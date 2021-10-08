@@ -13,6 +13,7 @@
     "build:js": "esbuild src/index.js --bundle --minify --loader:.js=jsx --outfile=dist/bundle.js",
     "build:css": "postcss src/index.css -o dist/index.css",
     "build": "npm run prime && npm run build:js && npm run build:css",
+    "format": "prettier --write src/",
     "prime": "copyfiles public/* dist --up=1",
     "start": "npm run prime && concurrently \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\""
   },
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "concurrently": "6.3.0",
-    "copyfiles": "2.4.1"
+    "copyfiles": "2.4.1",
+    "prettier": "2.4.1"
   }
 }
