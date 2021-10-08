@@ -15,11 +15,16 @@
     "start": "npm run prime && npm run build -- --servedir=dist"
   },
   "dependencies": {
+    "autoprefixer": "10.3.7",
     "esbuild": "0.13.4",
+    "postcss": "8.3.9",
+    "postcss-cli": "9.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "tailwindcss": "2.2.16"
   },
   "devDependencies": {
+    "concurrently": "6.3.0",
     "copyfiles": "2.4.1"
   }
 }
