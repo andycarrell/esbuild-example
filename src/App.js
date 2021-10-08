@@ -8,11 +8,16 @@ const App = () => {
   }, []);
 
   return (
-    <>
-      <h1>Esbuild Example</h1>
-      <h2>Count: {count}</h2>
-      <button onClick={increment}>Increment</button>
-    </>
+    <div className="py-5 px-3">
+      <h1 className="text-3xl font-serif font-bold mb-6">Esbuild Example</h1>
+      <h2 className="text-2xl font-serif font-semibold mb-4">Count: {count}</h2>
+      <button
+        className="border border-black rounded-sm text-xs font-medium tracking-tight px-2 py-px bg-gray-200 bg-opacity-60"
+        onClick={increment}
+      >
+        Increment
+      </button>
+    </div>
   );
 };
 

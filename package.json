@@ -10,9 +10,11 @@
     "url": "ssh://git@github.com:andycarrell/esbuild-example.git"
   },
   "scripts": {
-    "build": "esbuild src/index.js --bundle --minify --loader:.js=jsx --outfile=dist/bundle.js",
+    "build:js": "esbuild src/index.js --bundle --minify --loader:.js=jsx --outfile=dist/bundle.js",
+    "build:css": "postcss src/index.css -o dist/index.css",
+    "build": "npm run prime && npm run build:js && npm run build:css",
     "prime": "copyfiles public/* dist --up=1",
-    "start": "npm run prime && npm run build -- --servedir=dist"
+    "start": "npm run prime && concurrently \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\""
   },
   "dependencies": {
     "autoprefixer": "10.3.7",
