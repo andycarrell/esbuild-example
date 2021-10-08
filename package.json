@@ -1,0 +1,25 @@
+{
+  "name": "esbuild-example",
+  "version": "0.0.1",
+  "author": "andycarrell",
+  "description": "",
+  "license": "ISC",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:andycarrell/esbuild-example.git"
+  },
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --minify --loader:.js=jsx --outfile=dist/bundle.js",
+    "prime": "copyfiles public/* dist --up=1",
+    "start": "npm run prime && npm run build -- --servedir=dist"
+  },
+  "dependencies": {
+    "esbuild": "0.13.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "copyfiles": "2.4.1"
+  }
+}
