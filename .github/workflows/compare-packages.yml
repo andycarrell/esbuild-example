@@ -1,0 +1,22 @@
+name: Compare packages
+on:
+  pull_request:
+
+jobs:
+  compare-packages:
+    name: Compare changes to package.json
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.4.0
+      - name: Checkout code - base branch
+        uses: actions/checkout@v2.4.0
+        with:
+          path: base
+          ref: ${{ github.event.pull_request.base.sha }}
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - name: Compare packages
+        run: node .github/scripts/compare-packages.js --base=base/package.json --compare=package.json --verbose --write
