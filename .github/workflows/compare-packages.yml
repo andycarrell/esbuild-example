@@ -19,4 +19,9 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - name: Compare packages
-        run: node .github/scripts/compare-packages.js --base=base/package.json --compare=package.json --verbose --write
+        run: |
+          node .github/scripts/compare-packages.js \
+          --base=base/package.json \
+          --compare=package.json \
+          --output=$RUNNER_TEMP \
+          --verbose

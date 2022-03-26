@@ -21,8 +21,7 @@ function generate(a, b) {
     return null;
   }
 
-  const report = `
-👋 Looks like there's a change in packages 🥡
+  const report = `👋 Looks like there's a change in packages 🥡
 
 The following packages have been updated or added:
 ${changes
@@ -46,7 +45,7 @@ async function run() {
   const compareArg = process.argv.find((arg) => arg.startsWith("--compare"));
 
   const isVerbose = process.argv.find((arg) => arg.startsWith("--verbose"));
-  const shouldWrite = process.argv.find((arg) => arg.startsWith("--write"));
+  const outputArg = process.argv.find((arg) => arg.startsWith("--output"));
 
   const log = (...args) => {
     if (isVerbose) {
@@ -77,8 +76,9 @@ async function run() {
 
   log(report);
 
-  if (shouldWrite) {
-    const filePath = path.join(process.cwd(), "compare-packages.txt");
+  if (outputArg) {
+    const [, outputPath = process.cwd()] = outputArg.split("=");
+    const filePath = path.join(outputPath, "compare-packages.md");
     log(`Writing report to ${filePath}`);
     await fs.writeFile(filePath, report);
   }
