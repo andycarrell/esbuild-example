@@ -28,7 +28,7 @@ The following packages have been updated or added 🥡
 <ul>${changes
     .map(([name, version, prevVersion]) => {
       const withSocketUrl = (str) =>
-        `<a href="https://socket.dev/npm/package/${name}/overview/${version}">${str}</a>`;
+        `<a href="https://socket.dev/npm/package/${name}/overview/${version}" target="_blank">${str}</a>`;
 
       if (prevVersion) {
         return `<li>'${name}' updated from v${prevVersion} to v${version}. ${withSocketUrl(
