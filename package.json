@@ -19,7 +19,7 @@
     "start": "npm run prime && concurrently \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\""
   },
   "dependencies": {
-    "autoprefixer": "10.3.7",
+    "autoprefixer": "10.4.4",
     "esbuild": "0.13.4",
     "postcss": "8.3.9",
     "postcss-cli": "9.0.1",
