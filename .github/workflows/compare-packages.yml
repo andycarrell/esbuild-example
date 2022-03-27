@@ -1,0 +1,48 @@
+name: Compare packages
+on:
+  pull_request:
+    paths:
+      - "package.json"
+
+jobs:
+  compare-packages:
+    name: Compare changes to package.json
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.4.0
+      - name: Checkout code - base branch
+        uses: actions/checkout@v2.4.0
+        with:
+          path: base
+          ref: ${{ github.event.pull_request.base.sha }}
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - name: Compare packages
+        run: |
+          node .github/scripts/compare-packages.js \
+          --base=base/package.json \
+          --compare=package.json \
+          --output=$RUNNER_TEMP \
+          --verbose
+      - name: Read and assign to output
+        if: hashFiles('${{ env.RUNNER_TEMP }}/report.md') != ''
+        id: output
+        run: |
+          comment='<!-- ypkmtr unique comment -->'
+          while read line
+          do
+            comment+=$line
+          done < $RUNNER_TEMP/report.md
+          echo "::set-output name=comment::$comment"
+      - name: Comment on pull request
+        if: steps.output.outputs.comment
+        uses: unsplash/comment-on-pr@v1.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: ${{ steps.output.outputs.comment }}
+          check_for_duplicate_msg: false
+          delete_prev_regex_msg: "<!-- ypkmtr unique comment -->"
