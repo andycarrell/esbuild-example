@@ -21,21 +21,27 @@ function generate(a, b) {
     return null;
   }
 
-  const report = `👋 Looks like there's a change in packages 🥡
+  const report = `<h3>This pull request changes package.json 👋 </h3>
+The following packages have been updated or added 🥡
+<br/>
+<br/>
+<ul>${changes
+    .map(([name, version, prevVersion]) => {
+      const withSocketUrl = (str) =>
+        `<a href="https://socket.dev/npm/package/${name}/overview/${version}">${str}</a>`;
 
-The following packages have been updated or added:
-${changes
-  .map(([name, version, prevVersion]) => {
-    const socketUrl = `https://socket.dev/npm/package/${name}/overview/${version}`;
+      if (prevVersion) {
+        return `<li>'${name}' updated from v${prevVersion} to v${version}. ${withSocketUrl(
+          "Review the new version on Socket"
+        )}`;
+      }
 
-    if (prevVersion) {
-      return `* '${name}' updated from v${prevVersion} to v${version}. [Review the new version on Socket](${socketUrl})`;
-    }
-
-    return `* '${name}' added at v${version}. [Review the new package on Socket](${socketUrl})`;
-  })
-  .join("\n")}
-`;
+      return `<li>'${name}' added at v${version}.  ${withSocketUrl(
+        "Review the new package on Socket"
+      )}`;
+    })
+    .join("")}
+</ul>`;
 
   return report;
 }
@@ -43,7 +49,6 @@ ${changes
 async function run() {
   const baseArg = process.argv.find((arg) => arg.startsWith("--base"));
   const compareArg = process.argv.find((arg) => arg.startsWith("--compare"));
-
   const isVerbose = process.argv.find((arg) => arg.startsWith("--verbose"));
   const outputArg = process.argv.find((arg) => arg.startsWith("--output"));
 
@@ -74,11 +79,12 @@ async function run() {
     return;
   }
 
+  log("Report:");
   log(report);
 
   if (outputArg) {
     const [, outputPath = process.cwd()] = outputArg.split("=");
-    const filePath = path.join(outputPath, "compare-packages.md");
+    const filePath = path.join(outputPath, "report.md");
     log(`Writing report to ${filePath}`);
     await fs.writeFile(filePath, report);
   }
