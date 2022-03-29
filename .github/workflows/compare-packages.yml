@@ -4,6 +4,10 @@ on:
     paths:
       - "package.json"
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   compare-packages:
     name: Compare changes to package.json
