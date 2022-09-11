@@ -19,17 +19,17 @@
     "start": "npm run prime && concurrently \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\""
   },
   "dependencies": {
-    "autoprefixer": "10.4.4",
-    "esbuild": "0.13.4",
-    "postcss": "8.3.9",
-    "postcss-cli": "9.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "tailwindcss": "2.2.16"
+    "autoprefixer": "10.4.8",
+    "esbuild": "0.15.7",
+    "postcss": "8.4.16",
+    "postcss-cli": "10.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.1.8"
   },
   "devDependencies": {
-    "concurrently": "6.3.0",
+    "concurrently": "7.4.0",
     "copyfiles": "2.4.1",
-    "prettier": "2.6.1"
+    "prettier": "2.7.1"
   }
 }
