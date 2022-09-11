@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
 const App = () => {
   const [count, setCount] = useState(0);
 
   const increment = useCallback(() => {
-    setCount((count) => count + 1);
+    setCount((count: number) => count + 1);
   }, []);
 
   return (
