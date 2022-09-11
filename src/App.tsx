@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-const App = () => {
+export const App = () => {
   const [count, setCount] = useState(0);
 
   const increment = useCallback(() => {
@@ -20,5 +20,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
