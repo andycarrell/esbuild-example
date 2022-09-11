@@ -1,0 +1,39 @@
+name: Build
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  css:
+    name: Build CSS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+          node-version-file: ".nvmrc"
+      - name: Install dependencies
+        run: npm install
+      - name: Build CSS
+        run: npm run build:css
+
+  javascript:
+    name: Build JS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+          node-version-file: ".nvmrc"
+      - name: Install dependencies
+        run: npm install
+      - name: Build JS
+        run: npm run build:js

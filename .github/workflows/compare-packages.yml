@@ -23,6 +23,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
+          cache: "npm"
           node-version-file: ".nvmrc"
       - name: Compare packages
         run: |

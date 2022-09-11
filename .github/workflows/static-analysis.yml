@@ -15,8 +15,8 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version-file: ".nvmrc"
           cache: "npm"
+          node-version-file: ".nvmrc"
       - name: Install dependencies
         run: npm install
       - name: Prettier check
