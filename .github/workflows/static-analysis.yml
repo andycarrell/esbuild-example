@@ -6,6 +6,22 @@ on:
       - main
 
 jobs:
+  eslint-check:
+    name: Eslint check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Eslint check
+        run: npm run lint:check
+
   prettier-check:
     name: Prettier check
     runs-on: ubuntu-latest
