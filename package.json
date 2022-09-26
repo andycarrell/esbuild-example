@@ -22,7 +22,7 @@
     "types:check": "tsc"
   },
   "dependencies": {
-    "autoprefixer": "10.4.8",
+    "autoprefixer": "10.4.12",
     "esbuild": "0.15.7",
     "postcss": "8.4.16",
     "postcss-cli": "10.0.0",
