@@ -10,7 +10,7 @@
     "url": "ssh://git@github.com:andycarrell/esbuild-example.git"
   },
   "scripts": {
-    "build:js": "esbuild src/index.tsx --bundle --minify --outfile=dist/bundle.js",
+    "build:js": "esbuild src/index.tsx --bundle --minify --outdir=dist",
     "build:css": "postcss src/index.css -o dist/index.css",
     "build": "npm run prime && npm run build:js && npm run build:css",
     "format": "prettier --write .",
