@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build:js": "esbuild src/index.tsx --bundle --minify --outdir=dist",
+    "build:static": "esbuild staticSrc/index.ts --bundle --minify --outdir=static",
     "build:css": "postcss src/index.css -o dist/index.css",
     "build": "npm run prime && npm run build:js && npm run build:css",
     "format": "prettier --write .",
@@ -19,6 +20,7 @@
     "prime": "copyfiles public/* dist --up=1",
     "prestart": "npm run prime",
     "start": "conc \"npm run types:check -- --watch\" \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\"",
+    "start:static": "npm run build:static -- --servedir=static",
     "types:check": "tsc"
   },
   "dependencies": {
