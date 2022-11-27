@@ -30,7 +30,7 @@ module.exports = {
       version: "detect",
     },
   },
-  ignorePatterns: ["dist/"],
+  ignorePatterns: ["lib/", "dist/"],
   overrides: [
     {
       // override config files to allow them to run in node
