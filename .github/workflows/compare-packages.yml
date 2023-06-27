@@ -41,7 +41,7 @@ jobs:
           do
             comment+=$line
           done < $RUNNER_TEMP/report.md
-          echo "::set-output name=comment::$comment"
+          echo "comment=$comment" >> $GITHUB_OUTPUT
       - name: Comment on pull request
         if: steps.output.outputs.comment
         uses: unsplash/comment-on-pr@v1.3.0
