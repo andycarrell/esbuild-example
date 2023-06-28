@@ -36,18 +36,21 @@ jobs:
         if: hashFiles('${{ env.RUNNER_TEMP }}/report.md') != ''
         id: output
         run: |
-          comment='<!-- ypkmtr unique comment -->'
+          report='<!-- ypkmtr unique comment -->'
           while read line
           do
-            comment+=$line
+            report+=$line
           done < $RUNNER_TEMP/report.md
-          echo "::set-output name=comment::$comment"
+          echo "REPORT=$report" >> $GITHUB_OUTPUT
       - name: Comment on pull request
-        if: steps.output.outputs.comment
+        if: steps.output.outputs.REPORT
         uses: unsplash/comment-on-pr@v1.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: ${{ steps.output.outputs.comment }}
+          msg: ${{ steps.output.outputs.REPORT }}
           check_for_duplicate_msg: false
           delete_prev_regex_msg: "<!-- ypkmtr unique comment -->"
+      - name: Action summary
+        if: steps.output.outputs.REPORT
+        run: echo "${{ steps.output.outputs.REPORT }}" >> $GITHUB_STEP_SUMMARY
