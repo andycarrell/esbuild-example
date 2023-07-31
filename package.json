@@ -38,7 +38,7 @@
     "concurrently": "8.2.0",
     "copyfiles": "2.4.1",
     "esbuild": "0.18.10",
-    "eslint": "8.43.0",
+    "eslint": "8.46.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-react": "7.32.2",
