@@ -32,12 +32,12 @@ The following packages have been updated or added 🥡
 
       if (prevVersion) {
         return `<li>'${name}' updated from v${prevVersion} to v${version}. ${withSocketUrl(
-          "Review the new version on Socket"
+          "Review the new version on Socket",
         )}`;
       }
 
       return `<li>'${name}' added at v${version}.  ${withSocketUrl(
-        "Review the new package on Socket"
+        "Review the new package on Socket",
       )}`;
     })
     .join("")}
@@ -60,7 +60,7 @@ async function run() {
 
   if (!baseArg || !compareArg) {
     console.error(
-      "Arguments missing, either --base or --compare. Unable to run script"
+      "Arguments missing, either --base or --compare. Unable to run script",
     );
 
     process.exit(1);

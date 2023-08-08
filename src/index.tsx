@@ -10,6 +10,6 @@ if (container) {
   root.render(<App />);
 } else {
   console.error(
-    `Couldn't find element with the id: ${APP_ID}, so couldn't render the app!`
+    `Couldn't find element with the id: ${APP_ID}, so couldn't render the app!`,
   );
 }
