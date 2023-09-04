@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Checkout code - base branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: base
           ref: ${{ github.event.pull_request.base.sha }}
